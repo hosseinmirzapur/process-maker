@@ -39,7 +39,7 @@ Route::prefix('/card')->group(function () {
 // item
 Route::prefix('/item')->group(function () {
     Route::resource('/', ItemController::class);
-});
+})->middleware('auth:sanctum');
 
 // checklist
 Route::prefix('/checklist')->group(function () {
