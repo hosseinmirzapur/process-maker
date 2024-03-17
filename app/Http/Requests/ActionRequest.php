@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class LabelRequest extends FormRequest
+class ActionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +26,9 @@ class LabelRequest extends FormRequest
     private function postRules(): array
     {
         return [
-            'title' => 'required',
-            'color' => ['required', 'hex_color']
+            'title' => ['required', Rule::unique('actions', 'title')],
+            'has_upload' => ['required', 'boolean'],
+            'has_payment' => ['required', 'boolean']
         ];
     }
 
@@ -36,8 +38,7 @@ class LabelRequest extends FormRequest
     private function putRules(): array
     {
         return [
-            'title' => 'nullable',
-            'color' => ['nullable', 'hex_color']
+            'title'
         ];
     }
 }

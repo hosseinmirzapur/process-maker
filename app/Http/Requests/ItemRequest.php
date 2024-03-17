@@ -11,18 +11,33 @@ class ItemRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return $this->isMethod('post') ? $this->postRules() : $this->putRules();
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array
      */
-    public function rules(): array
+    private function postRules(): array
     {
         return [
-            //
+            'title' => 'required',
+            'done' => ['required', 'boolean']
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    private function putRules(): array
+    {
+        return [
+            'title' => 'nullable',
+            'done' => 'boolean'
         ];
     }
 }

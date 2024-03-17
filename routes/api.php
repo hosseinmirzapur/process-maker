@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ActionController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ChecklistController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\ListObjectController;
@@ -45,6 +46,11 @@ Route::prefix('/item')->group(function () {
 Route::prefix('/checklist')->group(function () {
     Route::resource('/', ChecklistController::class);
 })->middleware('auth:sanctum');
+
+// comment
+Route::prefix('/comment')->group(function () {
+   Route::resource('/', CommentController::class);
+});
 
 // action
 Route::prefix('/action')->group(function () {
