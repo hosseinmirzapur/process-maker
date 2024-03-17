@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->date('deadline')->nullable();
+            $table->foreignId('list_id')->constrained('list_objects')->cascadeOnDelete();
             $table->timestamps();
         });
     }

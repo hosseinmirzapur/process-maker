@@ -27,7 +27,7 @@ class CardRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'nullable',
-            'deadline' => ['required', 'date']
+            'deadline' => ['nullable', 'date']
         ];
     }
 

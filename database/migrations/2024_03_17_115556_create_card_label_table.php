@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('card_label', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
-            $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
             $table->foreignId('card_id')->constrained('cards')->cascadeOnDelete();
+            $table->foreignId('label_id')->constrained('labels')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('card_label');
     }
 };

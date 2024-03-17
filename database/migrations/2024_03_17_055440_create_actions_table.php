@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('actions', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->boolean('has_upload');
+            $table->boolean('has_payment');
+            $table->foreignId('label_id')->constrained('labels')->cascadeOnDelete();
             $table->timestamps();
         });
     }

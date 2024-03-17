@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->boolean('done')->default(false);
+            $table->foreignId('checklist_id')->constrained('checklists')->cascadeOnDelete();
             $table->timestamps();
         });
     }
