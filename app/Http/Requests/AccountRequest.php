@@ -35,6 +35,11 @@ class AccountRequest extends FormRequest
 
     private function updateRules(): array
     {
-        return [];
+        return [
+            'username' => ['required', Rule::unique('accounts', 'username')],
+            'fullname' => 'nullable',
+            'status' => ['nullable', Rule::in(Account::STATUS)],
+            'role' => 'nullable'
+        ];
     }
 }

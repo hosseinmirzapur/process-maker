@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ItemRequest extends FormRequest
 {
@@ -26,7 +27,8 @@ class ItemRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'done' => ['required', 'boolean']
+            'done' => ['required', 'boolean'],
+            'checklist_id' => ['required', Rule::exists('checklists', 'id')]
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CardRequest extends FormRequest
 {
@@ -27,7 +28,8 @@ class CardRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'nullable',
-            'deadline' => ['nullable', 'date']
+            'deadline' => ['nullable', 'date'],
+            'list_id' => ['required', Rule::exists('list_objects', 'id')]
         ];
     }
 

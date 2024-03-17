@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ChecklistRequest extends FormRequest
 {
@@ -25,7 +26,8 @@ class ChecklistRequest extends FormRequest
     public function postRules(): array
     {
         return [
-            'title' => 'required'
+            'title' => 'required',
+            'card_id' => ['required', Rule::exists('cards', 'id')]
         ];
     }
 

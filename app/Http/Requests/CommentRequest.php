@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CommentRequest extends FormRequest
 {
@@ -25,7 +26,9 @@ class CommentRequest extends FormRequest
     private function postRules(): array
     {
         return [
-            'content' => 'required'
+            'content' => 'required',
+            'account_id' => ['required', Rule::exists('accounts', 'id')],
+            'card_id' => ['required', Rule::exists('cards', 'id')]
         ];
     }
 

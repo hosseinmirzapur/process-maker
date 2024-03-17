@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AttachLabelRequest;
 use App\Http\Requests\CardRequest;
 use App\Services\CardService;
 use Illuminate\Http\JsonResponse;
@@ -64,6 +65,18 @@ class CardController extends Controller
     {
         return response()->json([
             'success' => $this->service->delete($id)
+        ]);
+    }
+
+    /**
+     * @param AttachLabelRequest $request
+     * @return JsonResponse
+     */
+    public function attachLabel(AttachLabelRequest $request): JsonResponse
+    {
+        $data = $request->validated();
+        return response()->json([
+            'card'=> $this->service->attachLabel($data['card_id'], $data['label_id'])
         ]);
     }
 }

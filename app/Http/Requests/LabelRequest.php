@@ -26,7 +26,7 @@ class LabelRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'color' => ['required', 'hex_color']
+            'color' => ['required', 'hex_color'],
         ];
     }
 

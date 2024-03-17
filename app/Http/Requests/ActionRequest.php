@@ -28,7 +28,8 @@ class ActionRequest extends FormRequest
         return [
             'title' => ['required', Rule::unique('actions', 'title')],
             'has_upload' => ['required', 'boolean'],
-            'has_payment' => ['required', 'boolean']
+            'has_payment' => ['required', 'boolean'],
+            'label_id' => ['required', Rule::exists('labels', 'id')]
         ];
     }
 
@@ -38,7 +39,9 @@ class ActionRequest extends FormRequest
     private function putRules(): array
     {
         return [
-            'title'
+            'title' => ['nullable', Rule::unique('actions', 'title')],
+            'has_upload' => ['nullable', 'boolean'],
+            'has_payment' => ['nullable', 'boolean']
         ];
     }
 }

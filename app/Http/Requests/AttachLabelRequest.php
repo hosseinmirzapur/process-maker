@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rule;
 
-class ChangeAccountPassRequest extends FormRequest
+class AttachLabelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,9 +18,8 @@ class ChangeAccountPassRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'old' => 'required',
-            'new' => ['required', Password::min(8)->mixedCase()],
-            'confirm' => ['required', 'same:new']
+            'card_id' => ['required', Rule::exists('cards', 'id')],
+            'label_id' => ['required', Rule::exists('labels', 'id')]
         ];
     }
 }

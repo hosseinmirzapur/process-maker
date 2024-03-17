@@ -58,4 +58,16 @@ class CardService
         $card = Card::query()->findOrFail($id);
         return $card->delete();
     }
+
+    /**
+     * @param $card_id
+     * @param $label_id
+     * @return CardResource
+     */
+    public function attachLabel($card_id, $label_id): CardResource
+    {
+        $card = Card::query()->findOrFail($card_id);
+        $card->labels()->sync([$label_id], true);
+        return CardResource::make($card);
+    }
 }

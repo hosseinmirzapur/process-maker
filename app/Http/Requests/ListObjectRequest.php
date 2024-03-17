@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ListObjectRequest extends FormRequest
 {
@@ -26,6 +27,7 @@ class ListObjectRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'process_id' => ['required', Rule::exists('processes', 'id')]
         ];
     }
 

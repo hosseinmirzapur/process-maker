@@ -35,6 +35,7 @@ Route::prefix('/list')->group(function () {
 // card
 Route::prefix('/card')->group(function () {
     Route::resource('/', CardController::class);
+    Route::post('/attach-label', [CardController::class, 'attachLabel']);
 })->middleware('auth:sanctum');
 
 // item
